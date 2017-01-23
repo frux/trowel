@@ -1,0 +1,10 @@
+.hello-world
+{
+	background: #eee;
+
+	&__code
+	{
+		margin: 0;
+		padding: 15px;
+	}
+}
