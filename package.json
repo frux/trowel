@@ -4,6 +4,8 @@
   "description": "Trowel",
   "main": "index.js",
   "scripts": {
+    "start": "node server",
+    "start:prod": "NODE_ENV=production node server",
     "build": "NODE_ENV=production webpack --config ./webpack/webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
