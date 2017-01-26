@@ -1,3 +1,11 @@
 {
-    "presets": ["es2015-node6", "stage-0", "react"]
+	"presets": ["es2015-node6", "stage-0", "react"],
+	"plugins": [
+		[
+			"transform-require-ignore",
+			{
+				"extensions": [".css"]
+			}
+		]
+	]
 }

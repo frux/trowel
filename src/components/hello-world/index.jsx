@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import b from 'b_';
+import './hello-world.css';
 
 const helloWorld_ = b.with('hello-world');
 
@@ -20,15 +21,15 @@ export default class HelloWorld extends Component {
 
 		return (
 			<div className={classes}>
-				<pre className={helloWorld_('props')}>
+				<pre className={helloWorld_('code', {type: 'props'})}>
 					{`Props: ${JSON.stringify(this.props, null, '\t')}`}
 				</pre>
-				<pre className={helloWorld_('context')}>
+				<pre className={helloWorld_('code', {type: 'context'})}>
 					{`Context: ${JSON.stringify(this.context, null, '\t')}`}
 				</pre>
-				<pre className={helloWorld_('state')}>
+				<pre className={helloWorld_('code', {type: 'state'})}>
 					{`State: ${JSON.stringify(this.state, null, '\t')}`}
-				</pre>TEST
+				</pre>
 			</div>
 		);
 	}

@@ -6,10 +6,11 @@ const env = process.env.NODE_ENV;
 
 const config = {
 	name: 'server',
-	entry: './src/ssr',
+	entry: path.join(__dirname, '../src/ssr'),
 	output: {
-		path: path.join(__dirname, 'build'),
+		path: path.join(__dirname, '../build'),
 		filename: 'build.js',
+		libraryTarget: 'commonjs2',
 		devtoolModuleFilenameTemplate: '/[absolute-resource-path]'
 	},
 	resolve: {
@@ -17,10 +18,20 @@ const config = {
 	},
 	externals: [nodeExternals()],
 	module: {
-		rules: [{
-			test: /\.jsx?$/,
-			loaders: ['babel-loader']
-		}]
+		rules: [
+			{
+				test: /\.jsx?$/,
+				loaders: ['babel-loader']
+			},
+			{
+				test: /\.css$/,
+				use: 'null-loader'
+			},
+			{
+				test: /\.json$/,
+				use: 'json-loader'
+			}
+		]
 	},
 	plugins: [
 		new webpack.NoEmitOnErrorsPlugin(),

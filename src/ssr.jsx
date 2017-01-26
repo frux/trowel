@@ -23,7 +23,6 @@ function renderDocument(head, appHtml, appState, appData) {
 				{head.meta.toComponent()}
 
 				{head.link.toComponent()}
-				<link rel="shortcut icon" href="//yastatic.net/islands-icons/_/aKnllxm-gQhidpzbZqub7qe641g.ico"/>
 				<link rel="stylesheet" href={`${appData.staticHost}/build/${appData.bundle}.build.css`}/>
 
 				{head.script.toComponent()}
