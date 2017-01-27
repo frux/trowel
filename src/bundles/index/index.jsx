@@ -37,7 +37,7 @@ class App extends PureComponent {
 					link={[]}
 					script={[]}
 					/>
-				<h1>Hello Reactive-Stub!</h1>
+				<h1>Hello Trowel!</h1>
 				<Match pattern="(/)?" exactly component={HelloWorld}/>
 				<Miss component={this._404}/>
 			</div>
