@@ -5,19 +5,27 @@ const devMiddleware = require('webpack-dev-middleware');
 const hotMiddleware = require('webpack-hot-middleware');
 const router = require('./router');
 
-const env = process.env.NODE_ENV;
+const IS_PRODUCTION = (process.env.NODE_ENV === 'production');
 
 const app = new Express();
 
 let ssr;
 
-if (env === 'local') {
+if (IS_PRODUCTION) {
+	// in production use built code
+	ssr = require('../build/build').default;
+
+	app.use('/static', Express.static(path.resolve(__dirname, '../static'), {
+		fallthrough: true,
+		maxAge: 365 * 24 * 60 * 60 * 1000
+	}));
+} else {
+	const config = require('../webpack/client.config');
+	const compiler = webpack(config);
+
 	require('babel-register')({
 		ignore: [/node_modules/]
 	});
-
-	const config = require('../webpack/client.config');
-	const compiler = webpack(config);
 
 	ssr = require('../src/ssr.jsx').default;
 
@@ -32,14 +40,6 @@ if (env === 'local') {
 
 	// watch bundles and hot-reload
 	app.use(hotMiddleware(compiler));
-} else {
-	// in production use built code
-	ssr = require('../build/build').default;
-
-	app.use('/static', Express.static(path.resolve(__dirname, '../static'), {
-		fallthrough: true,
-		maxAge: 365 * 24 * 60 * 60 * 1000
-	}));
 }
 
 app.use((req, res, next) => {

@@ -3,6 +3,8 @@ import {renderToStaticMarkup, renderToString} from 'react-dom/server';
 import {createServerRenderContext} from 'react-router';
 import Helmet from 'react-helmet';
 
+const IS_PRODUCTION = (process.env.NODE_ENV === 'production');
+
 const bundles = {
 	index: require('./bundles/index').default.bundle
 };
@@ -23,7 +25,9 @@ function renderDocument(head, appHtml, appState, appData) {
 				{head.meta.toComponent()}
 
 				{head.link.toComponent()}
-				<link rel="stylesheet" href={`${appData.staticHost}/build/${appData.bundle}.build.css`}/>
+				{IS_PRODUCTION && (
+					<link rel="stylesheet" href={`${appData.staticHost}/build/${appData.bundle}.build.css`}/>
+				)}
 
 				{head.script.toComponent()}
 			</head>
@@ -65,7 +69,7 @@ export default async function ssr(bundleName, location, appData) {
 	let appHtml = '';
 
 	// серверный рендеринг только если не локальная разработка
-	if (process.env.NODE_ENV !== 'local') {
+	if (IS_PRODUCTION) {
 		// создаем контекст для react-router
 		const routerContext = createServerRenderContext();
 
