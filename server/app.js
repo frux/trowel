@@ -1,6 +1,7 @@
 const path = require('path');
 const Express = require('express');
 const router = require('./router');
+const morgan = require('morgan');
 
 const IS_PRODUCTION = (process.env.NODE_ENV === 'production');
 
@@ -42,6 +43,7 @@ if (IS_PRODUCTION) {
 	app.use(hotMiddleware(compiler));
 }
 
+app.use(morgan('combined'));
 app.use((req, res, next) => {
 	res.render = ssr;
 	next();
