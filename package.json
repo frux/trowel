@@ -49,7 +49,6 @@
     "style-loader": "^0.13.1",
     "svg-url-loader": "^1.1.1",
     "svgo-loader": "^1.1.2",
-    "uglify-js": "git://github.com/mishoo/UglifyJS2#harmony",
     "url-loader": "^0.5.7",
     "webpack": "^2.2.0",
     "webpack-dev-middleware": "^1.9.0",
