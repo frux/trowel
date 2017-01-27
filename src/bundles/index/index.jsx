@@ -1,4 +1,3 @@
-/* globals document */
 import React, {PureComponent, PropTypes} from 'react';
 import {Match, Miss} from 'react-router';
 import Helmet from 'react-helmet';

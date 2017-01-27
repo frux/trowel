@@ -9,7 +9,7 @@ const bundles = {
 	index: require('./bundles/index').default.bundle
 };
 
-// PROMODEV-5205: Потенциальная XSS
+// Prevent XSS
 function printWindowData(data) {
 	const dataSource = JSON.stringify(data);
 	const escapedDataSource = dataSource.replace(/([<>/\u2028\u2029])/g, '\\$1');
@@ -17,7 +17,7 @@ function printWindowData(data) {
 }
 
 function renderDocument(head, appHtml, appState, appData) {
-	// "обертка" приложения
+	// Application "wrapper"
 	const html = renderToStaticMarkup(
 		<html {...head.htmlAttributes.toComponent()}>
 			<head>
@@ -60,23 +60,23 @@ export default async function ssr(bundleName, location, appData) {
 		throw new Error(`Bundle ${bundleName} not found`);
 	}
 
-	// получаем начальное состояние для redux
+	// get initial redux state
 	const appState = await bundle.getInitialState();
 
-	// получаем содержимое тега head
+	// get <head> content
 	const head = Helmet.rewind();
 
 	let appHtml = '';
 
-	// серверный рендеринг только если не локальная разработка
+	// server-side rendering only in production
 	if (IS_PRODUCTION) {
-		// создаем контекст для react-router
+		// create react-router context
 		const routerContext = createServerRenderContext();
 
-		// инициализируем приложение
+		// init app
 		const app = bundle.initServer(location, routerContext, appState, appData);
 
-		// серверный рендеринг
+		// server-side rendering
 		appHtml = renderToString(app);
 	}
 
