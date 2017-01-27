@@ -17,3 +17,5 @@ As long as work is in progress you can just clone this repo and change remote ur
 ``npm run start:prod`` Start app in production mode
 
 ``npm run build`` Build for production
+
+``npm run lint`` Lint your app
