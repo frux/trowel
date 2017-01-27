@@ -1,7 +1,6 @@
 import React, {PureComponent, PropTypes} from 'react';
 import {Match, Miss} from 'react-router';
 import Helmet from 'react-helmet';
-import b from 'b_';
 import bundle from '../../tools/bundle.jsx';
 import {configureStore} from '../../redux/store';
 import {getInitialState} from '../../redux/state';
@@ -22,10 +21,8 @@ class App extends PureComponent {
 	}
 
 	render() {
-		const app_ = b.with('app');
-
 		return (
-			<div className={app_()}>
+			<div className="app">
 				<Helmet
 					htmlAttributes={{lang: 'ru'}}
 					title="test1"
