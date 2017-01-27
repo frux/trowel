@@ -6,6 +6,7 @@
 * react-router@4
 * webpack@2
 * react-hot-loader@3
+* express
 * SSR
 
 ## Usage
