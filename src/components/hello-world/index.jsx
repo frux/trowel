@@ -10,10 +10,6 @@ export default class HelloWorld extends Component {
 		this.state = {
 			test: 1
 		};
-
-		setTimeout(() => {
-			this.setState({test: 2});
-		}, 3000);
 	}
 
 	render() {
