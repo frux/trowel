@@ -11,15 +11,12 @@ let stylesLoader = [
 	{
 		loader: 'postcss-loader',
 		options: {
-			plugins() {
-				return [
-					require('postcss-cssnext')
-				];
-			}
+			plugins: () => [require('postcss-cssnext')]
 		}
 	}
 ];
 
+// if production wrap styles in ExtractTextPlugin
 if (IS_PRODUCTION) {
 	const fallbackLoader = stylesLoader.shift();
 	const loader = stylesLoader;
@@ -66,17 +63,13 @@ const config = {
 		rules: [
 			{
 				test: /\.jsx?$/,
-				use: [
-					{
-						loader: 'babel-loader',
-						options: {
-							presets: ['es2015', 'stage-0', 'react'],
-							plugins: ['react-hot-loader/babel'],
-							ignore: /node_modules/,
-							babelrc: false
-						}
-					}
-				]
+				loader: 'babel-loader',
+				options: {
+					presets: ['es2015', 'stage-0', 'react'],
+					plugins: ['react-hot-loader/babel'],
+					ignore: /node_modules/,
+					babelrc: false
+				}
 			},
 			{
 				test: /\.css$/,
@@ -85,7 +78,12 @@ const config = {
 			{
 				test: /\.svg/,
 				use: [
-					'svg-url-loader',
+					{
+						loader: 'svg-url-loader',
+						options: {
+							dataUrlLimit: 1024
+						}
+					},
 					{
 						loader: 'svgo-loader',
 						options: {
