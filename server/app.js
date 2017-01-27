@@ -1,8 +1,5 @@
 const path = require('path');
 const Express = require('express');
-const webpack = require('webpack');
-const devMiddleware = require('webpack-dev-middleware');
-const hotMiddleware = require('webpack-hot-middleware');
 const router = require('./router');
 
 const IS_PRODUCTION = (process.env.NODE_ENV === 'production');
@@ -20,6 +17,9 @@ if (IS_PRODUCTION) {
 		maxAge: 365 * 24 * 60 * 60 * 1000
 	}));
 } else {
+	const webpack = require('webpack');
+	const devMiddleware = require('webpack-dev-middleware');
+	const hotMiddleware = require('webpack-hot-middleware');
 	const config = require('../webpack/client.config');
 	const compiler = webpack(config);
 
