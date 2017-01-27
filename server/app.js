@@ -12,11 +12,6 @@ let ssr;
 if (IS_PRODUCTION) {
 	// in production use built code
 	ssr = require('../build/build').default;
-
-	app.use('/static', Express.static(path.resolve(__dirname, '../static'), {
-		fallthrough: true,
-		maxAge: 365 * 24 * 60 * 60 * 1000
-	}));
 } else {
 	const webpack = require('webpack');
 	const devMiddleware = require('webpack-dev-middleware');
@@ -48,6 +43,11 @@ app.use((req, res, next) => {
 	res.render = ssr;
 	next();
 });
+
+app.use('/static', Express.static(path.resolve(__dirname, '../static'), {
+	fallthrough: true,
+	maxAge: 365 * 24 * 60 * 60 * 1000
+}));
 
 app.use('/', router);
 
