@@ -76,6 +76,10 @@ const config = {
 				loader: stylesLoader
 			},
 			{
+				test: /\.(jpg|gif|png|eot|otf|woff2?|ttf)$/,
+				loader: 'file-loader'
+			},
+			{
 				test: /\.svg/,
 				use: [
 					{
