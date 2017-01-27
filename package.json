@@ -19,7 +19,6 @@
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-helmet": "^4.0.0",
-    "react-hot-loader": "^3.0.0-beta.6",
     "react-redux": "^5.0.2",
     "react-router": "4.0.0-alpha.6",
     "redux": "^3.6.0"
@@ -46,6 +45,7 @@
     "postcss": "^5.2.11",
     "postcss-cssnext": "^2.9.0",
     "postcss-loader": "^1.2.2",
+    "react-hot-loader": "^3.0.0-beta.6",
     "style-loader": "^0.13.1",
     "svg-url-loader": "^1.1.1",
     "svgo-loader": "^1.1.2",
